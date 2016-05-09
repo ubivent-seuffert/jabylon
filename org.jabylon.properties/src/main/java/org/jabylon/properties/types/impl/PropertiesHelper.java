@@ -215,7 +215,7 @@ public class PropertiesHelper implements PropertyConverter {
             value = value.replace("\r", "\\r");
             value = value.replace("\n", "\\n");
             if(unicodeEscaping)
-                value = NativeToAsciiConverter.convertUnicodeToEncoded(value, true);
+                value = NativeToAsciiConverter.convertUnicodeToEncoded(value, false);
             writer.write(value);
         }
         writer.write('\n');
