@@ -86,7 +86,7 @@ public class PropertiesHelper implements PropertyConverter {
         while((line = reader.readLine())!=null)
         {
             lineNo++;
-            line=line.trim();
+            // line=line.trim();
             if(line.length()==0)
             {
                 if(!checkedForHeader)
