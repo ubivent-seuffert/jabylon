@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ContentHandler.ByteOrderMark;
@@ -203,7 +204,7 @@ public class PropertiesHelper implements PropertyConverter {
             writer.write(NativeToAsciiConverter.convertUnicodeToEncoded(key,true));
         else
             writer.write(key);
-        writer.write(" = ");
+        writer.write("=");
         String value = property.getValue();
         if(value!=null)
         {
@@ -283,11 +284,18 @@ public class PropertiesHelper implements PropertyConverter {
             out.write(ByteOrderMark.UTF_8.bytes());
         }
 
-        writer = new BufferedWriter(new OutputStreamWriter(out, encoding));
-        try {
+        TreeMap<String, Property> sortedProperties = new TreeMap<>();
+        Iterator<Property> itt = file.getProperties().iterator();
+        while (itt.hasNext()) {
+        	Property property = (Property) itt.next();
+        	sortedProperties.put(property.getKey(), property);
+        }
 
+        writer = new BufferedWriter(new OutputStreamWriter(out, encoding));
+        	
+        try {        	
             writeLicenseHeader(writer, file.getLicenseHeader());
-            Iterator<Property> it = file.getProperties().iterator();
+            Iterator<Property> it = sortedProperties.values().iterator();
             while (it.hasNext()) {
                 Property property = (Property) it.next();
                 //eliminate all empty property entries
