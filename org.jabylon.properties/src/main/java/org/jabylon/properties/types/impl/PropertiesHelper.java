@@ -213,7 +213,7 @@ public class PropertiesHelper implements PropertyConverter {
             //see https://github.com/jutzig/jabylon/issues/186
             if(value.startsWith(" "))
                 value = "\\"+value;
-            value = value.replace("\r", "\\r");
+            value = value.replace("\r", "");
             value = value.replace("\n", "\\n");
             if(unicodeEscaping)
                 value = NativeToAsciiConverter.convertUnicodeToEncoded(value, false);
