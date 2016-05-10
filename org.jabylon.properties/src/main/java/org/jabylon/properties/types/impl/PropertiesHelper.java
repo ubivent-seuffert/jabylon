@@ -184,8 +184,8 @@ public class PropertiesHelper implements PropertyConverter {
             buffer.append(c);
         }
         String string = buffer.toString();
-        if(string.startsWith(" ")) //remove trailing space '= value'
-            string = string.substring(1);
+//        if(string.startsWith(" ")) //remove trailing space '= value'
+//            string = string.substring(1);
 
         if(string.length()>0)
             result[1] = string;
