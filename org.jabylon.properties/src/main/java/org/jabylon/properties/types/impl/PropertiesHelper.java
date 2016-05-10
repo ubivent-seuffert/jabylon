@@ -86,6 +86,7 @@ public class PropertiesHelper implements PropertyConverter {
         while((line = reader.readLine())!=null)
         {
             lineNo++;
+            line = line.replaceFirst("^(.+)(\r\n|\n\r|\n|\r)$", "$1");
             // line=line.trim();
             if(line.length()==0)
             {
